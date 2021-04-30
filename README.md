@@ -1,6 +1,16 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- [![Travis-CI Build Status](https://travis-ci.org/NMML/crawl.svg?branch=devel)](https://travis-ci.org/NMML/crawl) -->
 
+## Installation
+
+``` r
+require(remotes)
+#> Loading required package: remotes
+remotes::install_github("dsjohnson/agTrend.ssl")
+#> Skipping install of 'agTrend.ssl' from a github remote, the SHA1 (e8c4a264) has not changed since last install.
+#>   Use `force = TRUE` to force installation
+```
+
 ## Fit regional trends to site-specific abundence data
 
 This package fits a log-linear trend models to regions aggregated over
@@ -169,12 +179,12 @@ head(N.summ)
 #> # A tibble: 6 x 13
 #>   site      year count region   rca est.pred se.pred ci.pred.lower ci.pred.upper
 #>   <chr>    <int> <dbl> <fct>  <dbl>    <dbl>   <dbl>         <dbl>         <dbl>
-#> 1 ADAK/LA…  1989    NA C ALEU     4     333.    94.4          196.          478.
-#> 2 ADAK/LA…  1990   137 C ALEU     4     307.    84.3          181.          441.
-#> 3 ADAK/LA…  1991    NA C ALEU     4     289.    82.0          181.          437.
-#> 4 ADAK/LA…  1992    NA C ALEU     4     271.    78.9          143.          395.
-#> 5 ADAK/LA…  1993    NA C ALEU     4     268.    77.5          155.          390.
-#> 6 ADAK/LA…  1994   327 C ALEU     4     263.    75.7          153.          388.
+#> 1 ADAK/LA…  1989    NA C ALEU     4     331.    92.8          201.          488.
+#> 2 ADAK/LA…  1990   137 C ALEU     4     310.    84.7          170.          446.
+#> 3 ADAK/LA…  1991    NA C ALEU     4     286.    81.6          166.          416.
+#> 4 ADAK/LA…  1992    NA C ALEU     4     274.    81.3          156.          410.
+#> 5 ADAK/LA…  1993    NA C ALEU     4     271.    80.0          155.          410.
+#> 6 ADAK/LA…  1994   327 C ALEU     4     267.    72.8          162.          388.
 #> # … with 4 more variables: est.real <dbl>, se.real <dbl>, ci.real.lower <dbl>,
 #> #   ci.real.upper <dbl>
 ```
@@ -192,18 +202,18 @@ reg.tr$growth %>% arrange(type, region)
 #> # A tibble: 12 x 5
 #>    region type        Est lower  upper
 #>    <fct>  <chr>     <dbl> <dbl>  <dbl>
-#>  1 C ALEU predicted -1.47 -2.55 -0.540
-#>  2 C GULF predicted  2.65  1.77  3.45 
-#>  3 E ALEU predicted  2.59  1.88  3.17 
-#>  4 E GULF predicted  2.40  1.26  3.77 
-#>  5 W ALEU predicted -7.09 -7.76 -6.31 
-#>  6 W GULF predicted  3.20  2.45  3.89 
-#>  7 C ALEU realized  -1.45 -2.21 -0.644
-#>  8 C GULF realized   2.68  2.21  3.14 
-#>  9 E ALEU realized   2.64  2.26  3.08 
-#> 10 E GULF realized   2.65  2.12  3.20 
-#> 11 W ALEU realized  -7.08 -7.56 -6.55 
-#> 12 W GULF realized   3.32  2.96  3.65
+#>  1 C ALEU predicted -1.50 -2.47 -0.324
+#>  2 C GULF predicted  2.61  1.85  3.49 
+#>  3 E ALEU predicted  2.59  1.93  3.24 
+#>  4 E GULF predicted  2.42  1.26  3.75 
+#>  5 W ALEU predicted -7.07 -7.75 -6.31 
+#>  6 W GULF predicted  3.21  2.41  3.90 
+#>  7 C ALEU realized  -1.46 -2.27 -0.678
+#>  8 C GULF realized   2.66  2.25  3.14 
+#>  9 E ALEU realized   2.63  2.22  3.08 
+#> 10 E GULF realized   2.66  2.08  3.14 
+#> 11 W ALEU realized  -7.06 -7.63 -6.61 
+#> 12 W GULF realized   3.33  3.00  3.67
 ```
 
 Here’s plot of those trends.
