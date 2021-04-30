@@ -1,0 +1,31 @@
+Package: agTrend.ssl
+Title: Aggregated Abundance Trends using GAMs
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Devin",
+           family = "Johnson",
+           role = c("aut", "cre"),
+           email = "devin.johnson@noaa.gov")
+Description: The package supplies a set of functions for stochastically imputing 
+    missing site-level abundance measurments so sites can be aggregated to regional
+    abundance for trend estimation. This package is specifically intended for trend 
+    estimation for the  NMFS Alaska Fisheries Science Center's assessment of Steller 
+    sea lion trends in Alaska and the U.S. west coast. Although the methodology 
+    is applicable to other applications, there are aspects of sea lion surveys hard coded 
+    into the analysis. 
+Imports: 
+    coda,
+    dplyr,
+    mvnfast,
+    purrr,
+    readxl,
+    rlang,
+    stringi,
+    tidyr
+License: CC0
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Depends: 
+    mgcv
