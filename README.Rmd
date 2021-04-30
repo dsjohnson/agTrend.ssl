@@ -19,8 +19,9 @@ knitr::opts_chunk$set(
 
 ## Installation
 
-```{r}
-require(remotes)
+If you don't have it, first install the `remotes` package. Then copy and paste the following code into an R console window:
+
+```{r, warnings=FALSE, message=FALSE, results='hide'}
 remotes::install_github("dsjohnson/agTrend.ssl")
 ```
 
@@ -106,6 +107,7 @@ Now that the imputation model is fitted, we can sample missing values from an ap
 posterior distribution. The `ag.summary(...)` function will summarize the sample for each site. Here I am only drawing 1,000 samples for a real analysis I would probably use `size=10000`.
 
 ```{r}
+set.seed(123) # setting seed to make sure draws are reproducible 
 N <- sample.abund(fit, wdpspup, yrs=1989:2019, size=1000, add.site.data=site.info)
 N.summ <- ag.summary(N, ci.prob=0.9)
 head(N)

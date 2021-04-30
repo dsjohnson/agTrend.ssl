@@ -20,6 +20,7 @@ fit <- fit.gam(data=wdpspup, obl.corr=FALSE,
                )
 
 ### Sample missing values using the fitted model
+set.seed(123) # setting seed to make sure draws are reproducible
 N <- sample.abund(fit, wdpspup, yrs=1989:2019, size=10000, add.site.data=site.info)
 N.summ <- ag.summary(N, ci.prob=0.9)
 

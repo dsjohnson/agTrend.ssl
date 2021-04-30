@@ -14,6 +14,7 @@ site.info <- wdpsnp %>% select(site, region, rca) %>% distinct()
 fit <- fit.gam(data=wdpsnp, obl.corr=TRUE)
 
 ### Sample missing values using the fitted model
+set.seed(123) # setting seed to make sure draws are reproducible
 N <- sample.abund(fit, wdpsnp, yrs=1989:2019, size=10000, add.site.data=site.info)
 N.summ <- ag.summary(N, ci.prob=0.9)
 

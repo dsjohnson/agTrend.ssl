@@ -3,12 +3,11 @@
 
 ## Installation
 
+If you don’t have it, first install the `remotes` package. Then copy and
+paste the following code into an R console window:
+
 ``` r
-require(remotes)
-#> Loading required package: remotes
 remotes::install_github("dsjohnson/agTrend.ssl")
-#> Skipping install of 'agTrend.ssl' from a github remote, the SHA1 (e8c4a264) has not changed since last install.
-#>   Use `force = TRUE` to force installation
 ```
 
 ## Fit regional trends to site-specific abundence data
@@ -163,6 +162,7 @@ function will summarize the sample for each site. Here I am only drawing
 1,000 samples for a real analysis I would probably use `size=10000`.
 
 ``` r
+set.seed(123) # setting seed to make sure draws are reproducible 
 N <- sample.abund(fit, wdpspup, yrs=1989:2019, size=1000, add.site.data=site.info)
 N.summ <- ag.summary(N, ci.prob=0.9)
 head(N)
@@ -179,12 +179,12 @@ head(N.summ)
 #> # A tibble: 6 x 13
 #>   site      year count region   rca est.pred se.pred ci.pred.lower ci.pred.upper
 #>   <chr>    <int> <dbl> <fct>  <dbl>    <dbl>   <dbl>         <dbl>         <dbl>
-#> 1 ADAK/LA…  1989    NA C ALEU     4     331.    92.8          201.          488.
-#> 2 ADAK/LA…  1990   137 C ALEU     4     310.    84.7          170.          446.
-#> 3 ADAK/LA…  1991    NA C ALEU     4     286.    81.6          166.          416.
-#> 4 ADAK/LA…  1992    NA C ALEU     4     274.    81.3          156.          410.
-#> 5 ADAK/LA…  1993    NA C ALEU     4     271.    80.0          155.          410.
-#> 6 ADAK/LA…  1994   327 C ALEU     4     267.    72.8          162.          388.
+#> 1 ADAK/LA…  1989    NA C ALEU     4     329.    91.6          179.          467.
+#> 2 ADAK/LA…  1990   137 C ALEU     4     307.    86.6          187.          454.
+#> 3 ADAK/LA…  1991    NA C ALEU     4     290.    83.7          172.          437.
+#> 4 ADAK/LA…  1992    NA C ALEU     4     275.    78.6          163.          409.
+#> 5 ADAK/LA…  1993    NA C ALEU     4     272.    76.8          143.          387.
+#> 6 ADAK/LA…  1994   327 C ALEU     4     269.    75.9          146.          390.
 #> # … with 4 more variables: est.real <dbl>, se.real <dbl>, ci.real.lower <dbl>,
 #> #   ci.real.upper <dbl>
 ```
@@ -202,18 +202,18 @@ reg.tr$growth %>% arrange(type, region)
 #> # A tibble: 12 x 5
 #>    region type        Est lower  upper
 #>    <fct>  <chr>     <dbl> <dbl>  <dbl>
-#>  1 C ALEU predicted -1.50 -2.47 -0.324
-#>  2 C GULF predicted  2.61  1.85  3.49 
-#>  3 E ALEU predicted  2.59  1.93  3.24 
-#>  4 E GULF predicted  2.42  1.26  3.75 
-#>  5 W ALEU predicted -7.07 -7.75 -6.31 
-#>  6 W GULF predicted  3.21  2.41  3.90 
-#>  7 C ALEU realized  -1.46 -2.27 -0.678
-#>  8 C GULF realized   2.66  2.25  3.14 
-#>  9 E ALEU realized   2.63  2.22  3.08 
-#> 10 E GULF realized   2.66  2.08  3.14 
-#> 11 W ALEU realized  -7.06 -7.63 -6.61 
-#> 12 W GULF realized   3.33  3.00  3.67
+#>  1 C ALEU predicted -1.49 -2.57 -0.458
+#>  2 C GULF predicted  2.65  1.82  3.49 
+#>  3 E ALEU predicted  2.59  1.91  3.25 
+#>  4 E GULF predicted  2.44  1.24  3.72 
+#>  5 W ALEU predicted -7.06 -7.78 -6.26 
+#>  6 W GULF predicted  3.21  2.46  3.87 
+#>  7 C ALEU realized  -1.46 -2.27 -0.653
+#>  8 C GULF realized   2.67  2.22  3.11 
+#>  9 E ALEU realized   2.64  2.17  3.00 
+#> 10 E GULF realized   2.66  2.13  3.19 
+#> 11 W ALEU realized  -7.06 -7.57 -6.57 
+#> 12 W GULF realized   3.32  2.95  3.65
 ```
 
 Here’s plot of those trends.
