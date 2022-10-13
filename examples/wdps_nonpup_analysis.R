@@ -8,14 +8,18 @@ wdpsnp <- proc.data(allcounts="ALLCOUNTS_v8.xlsx", age="np", dps="wdps") %>%
   filter(n.survey>1, n.nonzero>1) %>% mutate(obl = as.integer(year<2004))
 
 ### Get site information
-site.info <- wdpsnp %>% select(site, region, rca) %>% distinct()
+site.info <- wdpsnp %>% select(site, region, rca) %>% distinct() %>%
+  mutate(
+    zone = ifelse(region%in%c("W ALEU","C ALEU","E ALEU"), "ALEU", "GULF"),
+    wc_aleu = ifelse(region%in%c("W ALEU","C ALEU"), "W/C ALEU", NA)
+  )
 
 ### Fit Tweedie hierarchical GAM model for used for imputation
 fit <- fit.gam(data=wdpsnp, obl.corr=TRUE)
 
 ### Sample missing values using the fitted model
 set.seed(123) # setting seed to make sure draws are reproducible
-N <- sample.abund(fit, wdpsnp, yrs=1989:2019, size=10000, add.site.data=site.info)
+N <- sample.abund(fit, wdpsnp, yrs=1989:2019, size=1000, add.site.data=site.info)
 N.summ <- ag.summary(N, ci.prob=0.9)
 
 ### Run the section below to plot all sites

@@ -1,6 +1,6 @@
 Package: agTrend.ssl
 Title: Aggregated Abundance Trends using GAMs
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     person(given = "Devin",
            family = "Johnson",
@@ -26,6 +26,6 @@ License: CC0
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Depends: 
     mgcv
