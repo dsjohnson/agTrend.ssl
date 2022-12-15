@@ -4,7 +4,7 @@
 \alias{fit.gam}
 \title{Fit penalized GAM to each site for missing data imputation}
 \usage{
-fit.gam(data, obl.corr, alt.mod = NULL, warn = FALSE, debug = FALSE)
+fit.gam(data, obl.corr, alt.mod = NULL, warn = FALSE, debug = FALSE, ...)
 }
 \arguments{
 \item{data}{A data frame containing the sites, counts, and years.}
@@ -17,6 +17,8 @@ fit.gam(data, obl.corr, alt.mod = NULL, warn = FALSE, debug = FALSE)
 
 \item{debug}{Logical. If set to \code{TRUE} the function will drop into browser
 mode within the function upon execution. Defaults to \code{FALSE}.}
+
+\item{...}{Extra arguments passed to \code{\link[mgcv]{gam}}}
 }
 \description{
 This function takes a processed data frame with counts during survey

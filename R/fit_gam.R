@@ -10,6 +10,7 @@
 #' @param warn Logical. Should fitting warnings be printed. Defaults to \code{FALSE}.
 #' @param debug Logical. If set to \code{TRUE} the function will drop into browser
 #' mode within the function upon execution. Defaults to \code{FALSE}.
+#' @param ... Extra arguments passed to \code{\link[mgcv]{gam}}
 #'@details A penalized GAM model is fit to the data with a Tweedie distribution for the response distribution.
 #'The mean function for site i in year t is modeled with a smooth year term for all sites plus
 #'a factor smooth such that each site has its own smooth year function as well the \code{mgcv} formula is
@@ -35,7 +36,7 @@ fit.gam <- function(data,
                     obl.corr,
                     alt.mod = NULL,
                     warn = FALSE,
-                    debug = FALSE){
+                    debug = FALSE,...){
 
   if(debug) browser()
   data <- dplyr::arrange(data, .data$site, .data$year)
@@ -75,19 +76,19 @@ fit.gam <- function(data,
     if(! 'obl' %in% colnames(data)) stop("If using oblique photo correction 'obl' must be a column in the data!")
     if(!warn){
       fit.gam <- suppressWarnings(
-        gam(mod, offset = -0.03903366*obl, data=data, family=twlss(), select=TRUE, method="REML")
+        gam(mod, offset = -0.03903366*obl, data=data, family=twlss(), select=TRUE, ...)
       )
     } else{
-      fit.gam <- gam(mod, offset = -0.03903366*obl, data=data, family=twlss(), select=TRUE, method="REML")
+      fit.gam <- gam(mod, offset = -0.03903366*obl, data=data, family=twlss(), select=TRUE, ...)
     }
 
   } else{
     if(!warn){
       fit.gam <- suppressWarnings(
-        gam(mod, data=data, family=twlss(), select=TRUE, method="REML")
+        gam(mod, data=data, family=twlss(), select=TRUE, ...)
       )
     } else{
-      fit.gam <- gam(mod, data=data, family=twlss(), select=TRUE, method="REML")
+      fit.gam <- gam(mod, data=data, family=twlss(), select=TRUE, ...)
     }
   }
   if(obl.corr){
