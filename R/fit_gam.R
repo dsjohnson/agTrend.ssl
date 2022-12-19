@@ -14,7 +14,7 @@
 #'@details A penalized GAM model is fit to the data with a Tweedie distribution for the response distribution.
 #'The mean function for site i in year t is modeled with a smooth year term for all sites plus
 #'a factor smooth such that each site has its own smooth year function as well the \code{mgcv} formula is
-#'\code{mu.form = count ~ s(year) + s(year, SITE, bs='fs')}. For the power and dispersion formulas,
+#'\code{mu.form = count ~ s(year, SITE, bs='fs', k=8, m=1)}. For the power and dispersion formulas,
 #'\code{p.form = ~ s(SITE, bs='re')} and \code{phi.form = ~ s(SITE, bs='re')}, so that each
 #'site has its own p and phi parameters for the Tweedie specification. Thus, for each site, the
 #'mean count is mu(i,t) and the variance is V(i,t) = phi(i)*mu(i,t)^p(i). To specify a different formula for the model, set
@@ -26,10 +26,11 @@
 #'photo vs. a medium format vertical photo. Unlike the original \code{agTrend} package
 #'the uncertainty in this estimate is not accounted for in the model. A few initial tests
 #'revealed that is source of variation seems insignificant when compared to the
-#'naturnal variation of the observed counts and the model was significantly easier to
+#'natural variation of the observed counts and the model was significantly easier to
 #'fit and more robust when fixing this quantity.
 #'
 #'@author Devin S. Johnson
+#'@import dplyr
 #'@export
 
 fit.gam <- function(data,
@@ -49,7 +50,7 @@ fit.gam <- function(data,
     if(!is.null(alt.mod$mu.form)){
       mod$mu.form <- alt.mod$mu.form
     } else{
-      mod$mu.form <- count ~  s(year) + s(year, site, bs="fs")
+      mod$mu.form <- count ~  s(year, site, bs="fs", k=8, m=1)
     }
     if(!is.null(alt.mod$p.form)){
       mod$p.form <- alt.mod$p.form
@@ -64,7 +65,7 @@ fit.gam <- function(data,
 
   } else{
     mod <- list(
-      mu.form = count ~  s(year) + s(year, site, bs="fs"),
+      mu.form = count ~  s(year) + s(year, site, bs="fs", k=8, m=1),
       p.form = ~s(site,bs='re'),
       phi.form = ~s(site,bs='re')
     )

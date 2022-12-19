@@ -1,6 +1,7 @@
 Package: agTrend.ssl
 Title: Aggregated Abundance Trends using GAMs
-Version: 0.0.0.9003
+Version: 0.0.0.9004
+Date: 12-19-2022
 Authors@R: 
     person(given = "Devin",
            family = "Johnson",
@@ -13,6 +14,8 @@ Description: The package supplies a set of functions for stochastically imputing
     sea lion trends in Alaska and the U.S. west coast. Although the methodology 
     is applicable to other applications, there are aspects of sea lion surveys hard coded 
     into the analysis. 
+Depends: 
+    mgcv (>= 1.8-41)
 Imports: 
     coda,
     dplyr,
@@ -27,5 +30,3 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
-Depends: 
-    mgcv

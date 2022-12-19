@@ -21,6 +21,7 @@ utils::globalVariables(c(".", ".x","SITE","site","year","X","X.mu","X.p","X.phi"
 ### Some utility functions
 ################################################################################
 
+#' @importFrom mgcv rTweedie
 draw.tw <- function(mu, p, phi, ...){
   nc <- ifelse(is.null(ncol(mu)), 1, ncol(mu))
   nr <- ifelse(is.null(nrow(mu)), length(mu), nrow(mu))
