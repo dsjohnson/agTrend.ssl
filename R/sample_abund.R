@@ -52,8 +52,8 @@ sample.abund <- function(fit, data, yrs, size=1000, add.site.data=NULL, keep.par
       data = map2(.data$data, .data$site, ~{.x$site=.y; .x}),
       X = map(data, ~{predict(fit, newdata=.x, type='lpmatrix')}),
       X.mu = map(X, ~{.x[,mu.idx]}),
-      X.p = map(X, ~{unique(.x[,p.idx])}),
-      X.phi = map(X, ~{unique(.x[,phi.idx])})
+      X.p = map(X, ~{unique(.x[,p.idx]) %>% as.matrix}),
+      X.phi = map(X, ~{unique(.x[,phi.idx]) %>% as.matrix})
     ) %>% select(-X) %>% ungroup()
 
   #check for single p and phi par
