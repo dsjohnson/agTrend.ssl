@@ -8,14 +8,14 @@ Authors@R:
            role = c("aut", "cre"),
            email = "devin.johnson@noaa.gov")
 Description: The package supplies a set of functions for stochastically imputing 
-    missing site-level abundance measurments so sites can be aggregated to regional
+    missing site-level abundance measurements so sites can be aggregated to regional
     abundance for trend estimation. This package is specifically intended for trend 
     estimation for the  NMFS Alaska Fisheries Science Center's assessment of Steller 
     sea lion trends in Alaska and the U.S. west coast. Although the methodology 
     is applicable to other applications, there are aspects of sea lion surveys hard coded 
     into the analysis. 
 Depends: 
-    mgcv (>= 1.8-41)
+    mgcv
 Imports: 
     coda,
     dplyr,

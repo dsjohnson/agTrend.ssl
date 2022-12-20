@@ -77,19 +77,19 @@ fit.gam <- function(data,
     if(! 'obl' %in% colnames(data)) stop("If using oblique photo correction 'obl' must be a column in the data!")
     if(!warn){
       fit.gam <- suppressWarnings(
-        gam(mod, offset = -0.03903366*obl, data=data, family=twlss(), select=TRUE, ...)
+        gam(mod, offset = -0.03903366*obl, data=data, family=twlss(), select=TRUE, method='REML',...)
       )
     } else{
-      fit.gam <- gam(mod, offset = -0.03903366*obl, data=data, family=twlss(), select=TRUE, ...)
+      fit.gam <- gam(mod, offset = -0.03903366*obl, data=data, family=twlss(), select=TRUE, method='REML',...)
     }
 
   } else{
     if(!warn){
       fit.gam <- suppressWarnings(
-        gam(mod, data=data, family=twlss(), select=TRUE, ...)
+        gam(mod, data=data, family=twlss(), select=TRUE, method='REML',...)
       )
     } else{
-      fit.gam <- gam(mod, data=data, family=twlss(), select=TRUE, ...)
+      fit.gam <- gam(mod, data=data, family=twlss(), select=TRUE, method='REML',...)
     }
   }
   if(obl.corr){
