@@ -1,7 +1,7 @@
 Package: agTrend.ssl
 Title: Aggregated Abundance Trends using GAMs
-Version: 0.0.0.9004
-Date: 12-19-2022
+Version: 0.0.0.9005
+Date: 12-20-2022
 Authors@R: 
     person(given = "Devin",
            family = "Johnson",
