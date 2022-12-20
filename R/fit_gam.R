@@ -50,7 +50,7 @@ fit.gam <- function(data,
     if(!is.null(alt.mod$mu.form)){
       mod$mu.form <- alt.mod$mu.form
     } else{
-      mod$mu.form <- count ~  s(year, site, bs="fs", k=8, m=1)
+      mod$mu.form <- count ~  s(year, site, bs="fs", m=1)
     }
     if(!is.null(alt.mod$p.form)){
       mod$p.form <- alt.mod$p.form
@@ -65,7 +65,7 @@ fit.gam <- function(data,
 
   } else{
     mod <- list(
-      mu.form = count ~  s(year) + s(year, site, bs="fs", k=8, m=1),
+      mu.form = count ~  s(year, site, bs="fs", m=1),
       p.form = ~s(site,bs='re'),
       phi.form = ~s(site,bs='re')
     )
