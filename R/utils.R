@@ -46,3 +46,7 @@ get.real <- function(N.pred, data, ...){
   return(out)
 }
 
+not_yr_col <- function(x){
+  suppressWarnings(colnames(x)[which(is.na(as.numeric(colnames(x))))])
+}
+

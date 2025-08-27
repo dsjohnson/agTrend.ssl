@@ -13,18 +13,22 @@ proc.data <- function(allcounts, age, dps){
   dsp <- tolower(dps)
   if(dps=='edps'){
     if(age=='pup'){
-      out <- read_excel(allcounts, sheet = "edpspup") %>%
-        tidyr::gather(key="year", value="count", -SITE, -REGION, convert=T)%>%
-        arrange(SITE, year)
+      out <- read_excel(allcounts, sheet = "edpspup")
+      not_yr <- not_yr_col(out)
+      out <- out %>% tidyr::gather(key="year", value="count", -not_yr, convert=T) %>% arrange(SITE, year)
       out$SITE <- stringi::stri_trans_general(out$SITE, "latin-ascii")
     } else{
-      edps.photo <- read_excel(allcounts, sheet = "edpsnp_corr") %>%
-        tidyr::gather(key="year", value="obl", -SITE, -REGION, convert=T) %>%
+      edps.photo <- read_excel(allcounts, sheet = "edpsnp_corr")
+      not_yr <- not_yr_col(edps.photo)
+      edps.photo <- edps.photo %>%
+        tidyr::gather(key="year", value="obl", -not_yr, convert=T) %>%
         arrange(SITE, year) %>% mutate(obl = ifelse(is.na(obl), 0, obl))
       edps.photo$SITE <- stringi::stri_trans_general(edps.photo$SITE, "latin-ascii")
 
-      edpsnp <- read_excel(allcounts, sheet = "edpsnp") %>%
-        tidyr::gather(key="year", value="count", -SITE, -REGION, convert=T)%>%
+      edpsnp <- read_excel(allcounts, sheet = "edpsnp")
+      not_yr <- not_yr_col(edpsnp)
+      edpsnp <- edpsnp %>%
+        tidyr::gather(key="year", value="count", -not_yr, convert=T)%>%
         arrange(SITE, year )
       edpsnp$SITE <- stringi::stri_trans_general(edpsnp$SITE, "latin-ascii")
 
@@ -32,12 +36,15 @@ proc.data <- function(allcounts, age, dps){
     }
   } else{
     if(age=='pup'){
-      out <- read_excel(allcounts, sheet = "wdpspup") %>%
-        tidyr::gather(key="year", value="count", -SITE, -REGION, -RCA, convert=T)%>%
+      out <- read_excel(allcounts, sheet = "wdpspup")
+      not_yr <- not_yr_col(out)
+      out <- out %>%
+        tidyr::gather(key="year", value="count", -not_yr, convert=T)%>%
         arrange(SITE, year)
     } else{
-      out <- read_excel(allcounts, sheet = "wdpsnp") %>%
-        tidyr::gather(key="year", value="count", -SITE, -REGION, -RCA, convert=T)%>%
+      out <- read_excel(allcounts, sheet = "wdpsnp")
+      not_yr <- not_yr_col(out)
+      out <- out %>% tidyr::gather(key="year", value="count", -not_yr, convert=T)%>%
         arrange(SITE, year) %>% mutate(obl = as.integer(year<2004))
     }
   }
